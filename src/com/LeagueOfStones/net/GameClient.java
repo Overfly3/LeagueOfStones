@@ -20,9 +20,7 @@ public class GameClient extends Thread{
 	public GameClient(String ipAddress) {
         try {
             this.socket = new DatagramSocket();
-            System.out.println("[CLIENT]Created DatagramSocket...");
             this.ipAddress = InetAddress.getByName(ipAddress);
-            System.out.println("[CLIENT]IP: "+ipAddress);
         } catch (SocketException e) {
             e.printStackTrace();
         } catch (UnknownHostException e) {
@@ -34,10 +32,8 @@ public class GameClient extends Thread{
         while (true) {
             byte[] data = new byte[Properties.packetDataSize];
             DatagramPacket packet = new DatagramPacket(data, data.length);
-            System.out.println("[CLIENT]Created new DatagramPacket with the size " + Properties.packetDataSize);
             try {
                 socket.receive(packet);
-                System.out.println("[CLIENT]Received new packet...");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -47,7 +43,6 @@ public class GameClient extends Thread{
 
     private void parsePacket(byte[] data, InetAddress address, int port) {
         String message = new String(data).trim();
-        System.out.println("[CLIENT]Parsed Packet message: " + message);
         PacketTypes type = Packet.lookupPacket(message.substring(0, 2));
         Packet packet = null;
         switch (type) {
@@ -55,7 +50,6 @@ public class GameClient extends Thread{
         case INVALID:
             break;
         case LOGIN:
-        	System.out.println("[CLIENT]The Packet is a login Packet");
             packet = new Packet00Login(data);
             handleLogin((Packet00Login) packet, address, port);
             break;

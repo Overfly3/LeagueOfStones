@@ -52,6 +52,7 @@ public class GameServer extends Thread{
 	            packet = new Packet00Login(data);
 	            System.out.println("[" + address.getHostAddress() + ":" + port + "] "
 	                    + ((Packet00Login) packet).getUsername() + " has connected...");
+	            
 	            Player player = new Player(address, port,((Packet00Login) packet).getUsername());
 	            this.addConnection(player, (Packet00Login) packet);
 	            break;
@@ -76,7 +77,6 @@ public class GameServer extends Thread{
 	                }
 	                alreadyConnected = true;
 	            } else {
-	                System.out.println("I DONT KNOW WHATS HAPPENING");
 	                sendData(packet.getData(), p.ipAddress, p.port);
 
 	                packet = new Packet00Login(p.getUsername());

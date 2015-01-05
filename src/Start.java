@@ -8,11 +8,9 @@ public class Start{
 		
 		GameServer server = new GameServer();
 		server.start();
-		System.out.println("Server running...");
 		
 		GameClient client = new GameClient("localhost");
 		client.start();
-		System.out.println("Client started...");
 		
 		//login new player
 		Packet00Login loginPacket = new Packet00Login("Lulu");
