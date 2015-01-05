@@ -1,3 +1,5 @@
+package com.LeagueOfStones.properties;
+
 
 public class Properties {
 	public static final int port = 5555;
