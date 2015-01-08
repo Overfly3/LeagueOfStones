@@ -130,4 +130,8 @@ public class GameServer extends Thread{
 	            sendData(data, p.ipAddress, p.port);
 	        }
 	    }
+	    
+	    public int countConnectedPlayers(){
+	    	return this.connectedPlayers.size();
+	    }
 }
