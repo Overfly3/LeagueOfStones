@@ -1,4 +1,4 @@
-package com.LeagueOfStones.mysql.jdbc.datasource;
+package com.LeagueOfStones.mysql.datasource;
 
 import javax.sql.DataSource;
 

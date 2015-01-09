@@ -1,3 +1,4 @@
+import com.LeagueOfStones.mysql.jdbc.MySQLService;
 import com.LeagueOfStones.net.GameClient;
 import com.LeagueOfStones.net.GameServer;
 
@@ -30,6 +31,9 @@ public class Start{
 //		
 //		Packet00Login loginPacket3 = new Packet00Login("TEST");
 //		loginPacket3.writeData(client);		
+		MySQLService mysql = new MySQLService();
+		mysql.query("select * from user");
 		
+		System.out.println(mysql.count());
 	}
 }
