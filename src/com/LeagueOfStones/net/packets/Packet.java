@@ -1,6 +1,5 @@
 package com.LeagueOfStones.net.packets;
 
-import com.LeagueOfStones.net.GameClient;
 import com.LeagueOfStones.net.GameServer;
 
 
@@ -28,7 +27,7 @@ public abstract class Packet {
         this.packetId = (byte) packetId;
     }
 
-    public abstract void writeData(GameClient client);
+    //public abstract void writeData(GameClient client);
 
     public abstract void writeData(GameServer server);
 
