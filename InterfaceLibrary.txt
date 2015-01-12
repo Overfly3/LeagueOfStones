@@ -1,0 +1,19 @@
+//----------------------------Interface Methods------------------------------------
+
+
+//GameClient -->  GameServer
+
+-Einloggen Nickname(00[nickname])
+-Kann sich in queue loggen (02)
+-Logout(01)
+-Spiel starten(03)
+-Spiel aufgeben(04)
+
+//GameServer --> GameClient
+
+-fuu(bla)
+
+//----------------------------Communication Conventions----------------------------
+communicationString = (string);
+parameter = [string];
+separator = ';'
