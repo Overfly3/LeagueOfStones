@@ -17,3 +17,14 @@
 communicationString = (string);
 parameter = [string];
 separator = ';'
+
+
+
+
+//----------------------------PacketTypes------------------------------------------
+INVALID(-1),
+LOGIN(00),
+DISCONNECT(01),
+ENQUEUE(02),
+STARTGAME(03),
+SURRENDERGAME(04);

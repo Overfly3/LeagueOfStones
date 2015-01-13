@@ -8,7 +8,10 @@ public abstract class Packet {
 	public static enum PacketTypes {
         INVALID(-1), 
         LOGIN(00), 
-        DISCONNECT(01);
+        DISCONNECT(01),
+        ENQUEUE(02),
+        STARTGAME(03),
+        SURRENDERGAME(04);
 
         private int packetId;
 
