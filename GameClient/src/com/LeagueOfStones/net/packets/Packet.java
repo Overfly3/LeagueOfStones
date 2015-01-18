@@ -11,7 +11,7 @@ public abstract class Packet {
         DISCONNECT(01),
         ENQUEUE(02),
         STARTGAME(03),
-        SURRENDERGAME(04);
+        GAMEWON(04);
 
         private int packetId;
 
