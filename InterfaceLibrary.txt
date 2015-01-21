@@ -4,8 +4,8 @@
 //GameClient -->  GameServer
 
 -Einloggen Nickname(00[nickname])
--Kann sich in queue loggen (02)
 -Logout(01)
+-Kann sich in queue loggen (02)
 -Spiel starten(03)
 -Spiel aufgeben(04)
 

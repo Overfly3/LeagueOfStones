@@ -16,6 +16,7 @@ import com.LeagueOfStones.properties.Properties;
 public class GameClient extends Thread{
 	private InetAddress ipAddress;
 	private DatagramSocket socket;
+	private boolean myIsLoggedIn = false;
 	
 	public GameClient(String ipAddress) {
         try {
@@ -27,7 +28,12 @@ public class GameClient extends Thread{
             e.printStackTrace();
         }
     }
-
+	
+	public boolean GetLoginStatus()
+	{
+		return myIsLoggedIn;
+	}
+	
     public void run() {
         while (true) {
             byte[] data = new byte[Properties.packetDataSize];
@@ -73,6 +79,13 @@ public class GameClient extends Thread{
     private void handleLogin(Packet00Login packet, InetAddress address, int port) {
         System.out.println("[" + address.getHostAddress() + ":" + port + "] " + packet.getUsername()
                 + " has logged in...");
-        //Player player = new Player(address, port);
+        if(!myIsLoggedIn)
+        {
+            myIsLoggedIn = true;
+        }
+        else
+        {
+        	//ignore packet
+        }
     }
 }
