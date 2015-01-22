@@ -10,6 +10,7 @@ public class StartClient{
 
 		Packet00Login loginPacket = new Packet00Login("Lulu");
 		loginPacket.writeData(client);
+		
 
 		try {
 			Thread.sleep(1000);

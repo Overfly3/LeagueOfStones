@@ -10,12 +10,12 @@ public class Packet02Enqueue extends Packet{
 
 	@Override
 	public void writeData(GameClient client) {
-		
+		client.sendData(getData());
 	}
 
 	@Override
 	public byte[] getData() {
-		return null;
+		return "02".getBytes();
 	}
 
 }

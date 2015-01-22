@@ -62,6 +62,14 @@ public class GameServer extends Thread{
 	                    + ((Packet01Disconnect) packet).getUsername() + " has left...");
 	            this.removeConnection((Packet01Disconnect) packet);
 	            break;
+	        case ENQUEUE:
+	        	break;
+	        case STARTGAME:
+	        	break;
+	        case GAMEWON:
+	        	break;
+	        case GAMELOST:
+	        	break;
 	        }
 	    }
 
@@ -76,7 +84,7 @@ public class GameServer extends Thread{
 	                    p.port = player.port;
 	                }
 	                alreadyConnected = true;
-	            } else {
+	            }else{
 	                sendData(packet.getData(), p.ipAddress, p.port);
 
 	                packet = new Packet00Login(p.getUsername());
