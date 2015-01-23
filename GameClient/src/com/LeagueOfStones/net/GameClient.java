@@ -7,9 +7,11 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 
+import com.LeagueOfStones.managers.GameManager;
 import com.LeagueOfStones.net.packets.Packet;
 import com.LeagueOfStones.net.packets.Packet.PacketTypes;
 import com.LeagueOfStones.net.packets.Packet00Login;
+import com.LeagueOfStones.net.packets.Packet01Disconnect;
 import com.LeagueOfStones.properties.Properties;
 
 
@@ -61,11 +63,13 @@ public class GameClient extends Thread{
             handleLogin((Packet00Login) packet, address, port);
             break;
         case DISCONNECT:
-            //packet = new Packet01Disconnect(data);            
+            packet = new Packet01Disconnect(data);
+            System.exit(0);
             break;
         case ENQUEUE:
         	break;
         case STARTGAME:
+        	handleStartGame(packet);
         	break;
         case GAMEWON:
         	break;
@@ -74,7 +78,13 @@ public class GameClient extends Thread{
         }
     }
 
-    public void sendData(byte[] data) {
+	private void handleStartGame(Packet packet) {
+		GameManager gameManager = new GameManager();
+		String nickNames[] = packet.readData(packet.getData()).split(";");
+		gameManager.StartGame(nickNames[1], nickNames[0]);
+	}
+
+	public void sendData(byte[] data) {
 
         DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, Properties.port);
         try {

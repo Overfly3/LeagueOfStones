@@ -9,21 +9,24 @@ import javax.swing.JFrame;
 
 import com.LeagueOfStones.net.GameClient;
 import com.LeagueOfStones.net.packets.Packet01Disconnect;
+import com.LeagueOfStones.net.packets.Packet02Enqueue;
 
 public class MainFrame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private GameClient myGameClient;
+	private String myNickName;
 	
 	//Optional: What happens when the frame closes?
 	public MainFrame(GameClient gameClient, String nickName) {
 		super("League Of Stones");
-		setUi(nickName);
+		myNickName = nickName;
 		myGameClient = gameClient;
+		setUi();
 	}
 
-	private void setUi(String nickName) {
+	private void setUi() {
 		addSearchGameButton();
-		addExitGameButton(nickName);
+		addExitGameButton();
 		
 		//Optional: What happens when the frame closes?
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +38,7 @@ public class MainFrame extends JFrame{
 		setVisible(true);
 	}
 
-	private void addExitGameButton(final String nickName) {
+	private void addExitGameButton() {
 		//add search game button
 		JButton uiButtonForExitGame = new JButton("Exit Game");
 		
@@ -47,14 +50,13 @@ public class MainFrame extends JFrame{
 		uiButtonForExitGame.addActionListener(new ActionListener() {
 	        public void actionPerformed(ActionEvent e)
 	        {
-	        	logOut(nickName);
-		        dispose();
+	        	logOut();
 	        }
 	    });
 	}
 
-	private void logOut(String nickName) {
-		Packet01Disconnect loginPacket = new Packet01Disconnect(nickName);
+	private void logOut() {
+		Packet01Disconnect loginPacket = new Packet01Disconnect(myNickName);
 		loginPacket.writeData(myGameClient);
 	}
 
@@ -76,7 +78,7 @@ public class MainFrame extends JFrame{
 	}
 
 	private void searchGame() {
-		//ENQUEUE(02),
-		//
+		Packet02Enqueue packet = new Packet02Enqueue(myNickName);
+		myGameClient.sendData(packet.getData());
 	}
 }

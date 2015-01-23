@@ -35,7 +35,7 @@ public abstract class Packet {
 
     public abstract void writeData(GameClient client);
 
-    public String readData(byte[] data) {
+	public String readData(byte[] data) {
         String message = new String(data).trim();
         return message.substring(2);
     }
