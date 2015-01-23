@@ -151,6 +151,8 @@ public class GameServer extends Thread{
 	        }
 	        if (!alreadyConnected) {
 	            this.connectedPlayers.add(player);
+	            packet = new Packet00Login(player.getUsername());
+	            sendData(packet.getData(), player.ipAddress, player.port);
 	            System.out.println("[SERVER]Added " +player.getUsername() +" to the connected players list.");
 	        }
 	    }

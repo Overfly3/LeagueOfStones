@@ -1,11 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-
-import com.LeagueOfStones.entities.Card;
-import com.LeagueOfStones.mysql.jdbc.MySQLService;
 import com.LeagueOfStones.net.GameServer;
-
-
 
 public class StartServer{
 
@@ -14,18 +7,18 @@ public class StartServer{
 		GameServer server = new GameServer();
 		
 		//services running on the server
-		//server.start();
-		//server.checkQueue();
+		server.start();
+		server.checkQueue();
 		
-		MySQLService mysql= new MySQLService();
-		List<Card> cards = new ArrayList<Card>();
-		
-		cards = mysql.queryCards("select * from cards");
-		
-		for (Card card : cards) {
-			System.out.println(card.getMyId());
-			
-		}
+//		MySQLService mysql= new MySQLService();
+//		List<Card> cards = new ArrayList<Card>();
+//		
+//		cards = mysql.queryCards("select * from cards");
+//		
+//		for (Card card : cards) {
+//			System.out.println(card.getMyId());
+//			
+//		}
 		
 	}
 	

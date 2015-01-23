@@ -35,7 +35,7 @@ public class GameClient extends Thread{
 	}
 	
     public void run() {
-        while (true) {
+    	while (true) {
             byte[] data = new byte[Properties.packetDataSize];
             DatagramPacket packet = new DatagramPacket(data, data.length);
             try {
@@ -56,6 +56,7 @@ public class GameClient extends Thread{
         case INVALID:
             break;
         case LOGIN:
+        	System.out.println("received login");
             packet = new Packet00Login(data);
             handleLogin((Packet00Login) packet, address, port);
             break;
