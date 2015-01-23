@@ -21,38 +21,35 @@ public class StartClient{
 
 	private static void setUi() {
 		//Create the frame.
-		MainFrame frame = new MainFrame("League Of Stones");
-
-		//Optional: What happens when the frame closes?
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		final JFrame loginFrame = new JFrame("League Of Stones");
 		
 		JButton uiButtonForLogin = new JButton("Login");
 		
 		//Create components and put them in the frame.
 		//...create emptyLabel...
-		frame.getContentPane().add(uiButtonForLogin, BorderLayout.PAGE_END);
+		loginFrame.getContentPane().add(uiButtonForLogin, BorderLayout.PAGE_END);
 		
-		JTextField uiTextFieldForLogin = new JTextField();
+		final JTextField uiTextFieldForLogin = new JTextField();
 		
 		//Add action listener to button
 		uiButtonForLogin.addActionListener(new ActionListener() {
  
             public void actionPerformed(ActionEvent e)
             {
-                login(uiTextFieldForLogin.getText());
+                login(uiTextFieldForLogin.getText(), loginFrame);
             }
         });   
 		
-		frame.getContentPane().add(uiTextFieldForLogin, BorderLayout.PAGE_START);
+		loginFrame.getContentPane().add(uiTextFieldForLogin, BorderLayout.PAGE_START);
 		
 		//Size the frame.
-		frame.pack();
+		loginFrame.pack();
 
 		//Show it.
-		frame.setVisible(true);
+		loginFrame.setVisible(true);
 	}
 
-	private static void login(String nickName) {
+	private static void login(String nickName, JFrame loginFrame) {
 		GameClient client = new GameClient("localhost");
 		client.start();
 
@@ -60,7 +57,7 @@ public class StartClient{
 		loginPacket.writeData(client);
 		
 		
-
+		//check if user has been logged in
 		int countOfLoginTries = 0;
 		while(true && countOfLoginTries < 5)
 		{
@@ -83,7 +80,8 @@ public class StartClient{
 		
 		if(client.GetLoginStatus())
 		{
-			//create mainwindow
+			loginFrame.dispose();
+			MainFrame mainFrame = new MainFrame(client, nickName);
 		}
 		else
 		{
