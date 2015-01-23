@@ -12,7 +12,12 @@ public abstract class Packet {
         ENQUEUE(02),
         STARTGAME(03),
         GAMEWON(04),
-        GAMELOST(05);
+        GAMELOST(05),
+        ATTACK(06),
+        PLAYCARD(07),
+        CARDDIED(10),
+        CARDUPDATE(11),
+        AREYOUTHERE(12);
 
         private int packetId;
 
