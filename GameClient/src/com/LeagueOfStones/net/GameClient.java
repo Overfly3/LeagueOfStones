@@ -60,9 +60,16 @@ public class GameClient extends Thread{
             handleLogin((Packet00Login) packet, address, port);
             break;
         case DISCONNECT:
-            //packet = new Packet01Disconnect(data);
-            
+            //packet = new Packet01Disconnect(data);            
             break;
+        case ENQUEUE:
+        	break;
+        case STARTGAME:
+        	break;
+        case GAMEWON:
+        	break;
+        case GAMELOST:
+        	break;
         }
     }
 

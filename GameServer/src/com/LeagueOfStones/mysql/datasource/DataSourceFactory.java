@@ -13,6 +13,7 @@ public class DataSourceFactory {
 		mysqlDS.setURL(Properties.connectionUrl);
 		mysqlDS.setUser(Properties.dbUser);
 		mysqlDS.setPassword(Properties.dbPassword);
+		mysqlDS.setDatabaseName("LeagueOfStones");
 		
 		return mysqlDS;
 			
