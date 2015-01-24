@@ -114,7 +114,7 @@ public class GameServer extends Thread{
 	    	Card myCard = mysql.queryCard("select * from cards where id = "+ packet.getMyCardId());
 	    	Card enemyCard = mysql.queryCard("select * from cards where id = "+ packet.getEnemyCardId());
 	    	
-	    	myCard.damageCard(enemyCard.AttackDamage);
+	    	myCard.damageCard(enemyCard.AttackDamage); //this method substracts the health with the attack damage
 	    	enemyCard.damageCard(myCard.AttackDamage);
 	    	
 	    	if(myCard.isDead){
@@ -257,7 +257,13 @@ public class GameServer extends Thread{
 	        }
 	        return index;
 	    }
-
+	    
+	    /**
+	     * sends data to the given ip/port
+	     * @param data
+	     * @param ipAddress
+	     * @param port
+	     */
 	    public void sendData(byte[] data, InetAddress ipAddress, int port) {
 
             DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, port);
@@ -268,6 +274,7 @@ public class GameServer extends Thread{
             }
 
 	    }
+	    
 	    
 	    
 	    public boolean checkConnection(byte[] data, InetAddress ipAddress, int port){
@@ -281,6 +288,10 @@ public class GameServer extends Thread{
             return true;
 	    }
 	    
+	    /**
+	     * returns true if a connections exists
+	     * @return
+	     */
 	    public boolean checkConnection(){
 	    	Packet packet = new Packet12AreYouThere();
 	    	for (Player p : connectedPlayers) {
@@ -293,7 +304,7 @@ public class GameServer extends Thread{
 			}
 	    	return true;
 	    }
-
+	    //gets all the clients in the list and sends them all a message
 	    public void sendDataToAllClients(byte[] data) {
 	        for (Player p : connectedPlayers) {
 	            sendData(data, p.ipAddress, p.port);

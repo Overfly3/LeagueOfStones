@@ -40,6 +40,7 @@ public abstract class Packet {
 
     public abstract void writeData(GameServer server);
 
+    //gets the string after the first two numbers
     public String readData(byte[] data) {
         String message = new String(data).trim();
         return message.substring(2);
@@ -47,6 +48,7 @@ public abstract class Packet {
 
     public abstract byte[] getData();
 
+    //gets the packet type depending of first two numbers leading in the packet name
     public static PacketTypes lookupPacket(String packetId) {
         try {
             return lookupPacket(Integer.parseInt(packetId));

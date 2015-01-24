@@ -20,7 +20,6 @@ public class MySQLService {
 	private DataSource ds = null;
 	private List<Card> cards = new ArrayList<Card>();
 	private Card card;
-	
 	public MySQLService(){
 		this.ds = DataSourceFactory.getMySQLDataSource();		
 	}
@@ -48,7 +47,11 @@ public class MySQLService {
 		}
 		return cards;
 	}
-	
+	/**
+	 * Returns a single card object of the performed query
+	 * @param stmt
+	 * @return
+	 */
 	public Card queryCard(String stmt){
 		this.prepare();
 		try {
@@ -68,6 +71,11 @@ public class MySQLService {
 		return card;
 	}
 	
+	/**
+	 * takes the resultset and returns a single object
+	 * @param rs
+	 * @return
+	 */
 	private Card extractCard(ResultSet rs) {
 		try {
 			while(rs.next()){
@@ -85,6 +93,11 @@ public class MySQLService {
 		return null;
 	}
 	
+	/**
+	 * Returns all the cards in the resultset
+	 * @param rs
+	 * @return
+	 */
 	private List<Card> extractCards(ResultSet rs) {
 		try {
 			while(rs.next()){
@@ -102,6 +115,9 @@ public class MySQLService {
 		}
 		return null;
 	}
+	/**
+	 * Prepares for the query statement
+	 */
 	private void prepare(){
 		try {
 			this.connection = ds.getConnection();

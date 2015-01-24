@@ -16,7 +16,7 @@ public class Card {
 	
 	public void damageCard(int damage){
 		Health = Health-damage;
-		if(Health<=0){
+		if(Health<=0){ //if health goes to zero or below, the card is dead
 			isDead = true;
 		}
 	}

@@ -11,6 +11,12 @@ public class Game {
 	public boolean running = false;
 	private GameServer server;
 	
+	/**
+	 * Creates a game
+	 * @param player1
+	 * @param player2
+	 * @param server
+	 */
 	public Game(Player player1, Player player2, GameServer server){
 		this.player1 = player1;
 		this.player2 = player2;
@@ -20,10 +26,19 @@ public class Game {
 		//TODO give the players cards
 	}
 	
+	/**
+	 * ends a game
+	 */
 	public void endGame(){
 		running = false;
 	}
 	
+	/**
+	 * returns true if the user is in the game
+	 * @param username
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean isPlayerConnected(String username) throws Exception{
 		boolean playerIsConnected = false;
 		Packet packet = new Packet12AreYouThere(username);
@@ -39,6 +54,10 @@ public class Game {
 		return playerIsConnected;
 	}
 	
+	/**
+	 * checks all connections if they are here
+	 * @return
+	 */
 	public boolean checkAllConnections(){
 		Packet packet = new Packet12AreYouThere();
 		if(!server.checkConnection(packet.getData(), player1.ipAddress, player1.port)){
@@ -50,6 +69,7 @@ public class Game {
 		}
 		return running;		
 	}	
+	
 	
 	public boolean isPlayerInThisGame(String username){
 		if(playerString.split(";")[0] == username.trim()){
