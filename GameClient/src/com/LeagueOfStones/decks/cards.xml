@@ -2,245 +2,210 @@
 <cards>
   <card>
     <Id>1</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>7</Health>
     <ManaCosts>7</ManaCosts>
   </card>
   <card>
     <Id>2</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>5</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>3</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>5</Health>
     <ManaCosts>3</ManaCosts>
   </card>
   <card>
     <Id>4</Id>
-    <Type>0</Type>
     <AttackDamage>1</AttackDamage>
     <Health>6</Health>
     <ManaCosts>4</ManaCosts>
   </card>
   <card>
     <Id>5</Id>
-    <Type>0</Type>
     <AttackDamage>2</AttackDamage>
     <Health>6</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>6</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>4</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>7</Id>
-    <Type>0</Type>
     <AttackDamage>2</AttackDamage>
     <Health>4</Health>
     <ManaCosts>7</ManaCosts>
   </card>
   <card>
     <Id>9</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>2</Health>
     <ManaCosts>3</ManaCosts>
   </card>
   <card>
     <Id>10</Id>
-    <Type>0</Type>
     <AttackDamage>5</AttackDamage>
     <Health>5</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>11</Id>
-    <Type>0</Type>
     <AttackDamage>0</AttackDamage>
     <Health>1</Health>
     <ManaCosts>0</ManaCosts>
   </card>
   <card>
     <Id>13</Id>
-    <Type>0</Type>
     <AttackDamage>3</AttackDamage>
     <Health>7</Health>
     <ManaCosts>7</ManaCosts>
   </card>
   <card>
     <Id>14</Id>
-    <Type>0</Type>
     <AttackDamage>1</AttackDamage>
     <Health>2</Health>
     <ManaCosts>2</ManaCosts>
   </card>
   <card>
     <Id>15</Id>
-    <Type>0</Type>
     <AttackDamage>2</AttackDamage>
     <Health>6</Health>
     <ManaCosts>2</ManaCosts>
   </card>
   <card>
     <Id>16</Id>
-    <Type>0</Type>
     <AttackDamage>1</AttackDamage>
     <Health>5</Health>
     <ManaCosts>3</ManaCosts>
   </card>
   <card>
     <Id>17</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>7</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>18</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>3</Health>
     <ManaCosts>4</ManaCosts>
   </card>
   <card>
     <Id>19</Id>
-    <Type>0</Type>
     <AttackDamage>3</AttackDamage>
     <Health>5</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>20</Id>
-    <Type>0</Type>
     <AttackDamage>5</AttackDamage>
     <Health>9</Health>
     <ManaCosts>8</ManaCosts>
   </card>
   <card>
     <Id>21</Id>
-    <Type>0</Type>
     <AttackDamage>5</AttackDamage>
     <Health>4</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>23</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>3</Health>
     <ManaCosts>4</ManaCosts>
   </card>
   <card>
     <Id>24</Id>
-    <Type>0</Type>
     <AttackDamage>5</AttackDamage>
     <Health>7</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>26</Id>
-    <Type>0</Type>
     <AttackDamage>5</AttackDamage>
     <Health>6</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>27</Id>
-    <Type>0</Type>
     <AttackDamage>8</AttackDamage>
     <Health>8</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>28</Id>
-    <Type>0</Type>
     <AttackDamage>7</AttackDamage>
     <Health>5</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>29</Id>
-    <Type>0</Type>
     <AttackDamage>3</AttackDamage>
     <Health>6</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>30</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>1</Health>
     <ManaCosts>2</ManaCosts>
   </card>
   <card>
     <Id>31</Id>
-    <Type>0</Type>
     <AttackDamage>3</AttackDamage>
     <Health>3</Health>
     <ManaCosts>3</ManaCosts>
   </card>
   <card>
     <Id>32</Id>
-    <Type>0</Type>
     <AttackDamage>6</AttackDamage>
     <Health>4</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>33</Id>
-    <Type>0</Type>
     <AttackDamage>7</AttackDamage>
     <Health>3</Health>
     <ManaCosts>4</ManaCosts>
   </card>
   <card>
     <Id>34</Id>
-    <Type>0</Type>
     <AttackDamage>7</AttackDamage>
     <Health>4</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>35</Id>
-    <Type>0</Type>
     <AttackDamage>3</AttackDamage>
     <Health>7</Health>
     <ManaCosts>6</ManaCosts>
   </card>
   <card>
     <Id>36</Id>
-    <Type>0</Type>
     <AttackDamage>4</AttackDamage>
     <Health>4</Health>
     <ManaCosts>5</ManaCosts>
   </card>
   <card>
     <Id>37</Id>
-    <Type>0</Type>
     <AttackDamage>3</AttackDamage>
     <Health>6</Health>
     <ManaCosts>4</ManaCosts>
   </card>
   <card>
     <Id>36</Id>
-    <Type>0</Type>
     <AttackDamage>5</AttackDamage>
     <Health>4</Health>
     <ManaCosts>8</ManaCosts>
   </card>
   <card>
     <Id>39</Id>
-    <Type>0</Type>
     <AttackDamage>3</AttackDamage>
     <Health>5</Health>
     <ManaCosts>4</ManaCosts>
