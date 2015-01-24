@@ -8,13 +8,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.LeagueOfStones.dialogs.MainFrame;
+import com.LeagueOfStones.managers.GameManager;
 import com.LeagueOfStones.net.GameClient;
 import com.LeagueOfStones.net.packets.Packet00Login;
 
 
 public class StartClient{
 	public static void main(String[] args){
-		setUi();
+		//setUi();
+		GameManager manager = new GameManager();
+		manager.getDeck();
 	}
 
 	private static void setUi() {
