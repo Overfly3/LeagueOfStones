@@ -19,6 +19,7 @@ import com.LeagueOfStones.net.packets.Packet01Disconnect;
 import com.LeagueOfStones.net.packets.Packet02Enqueue;
 import com.LeagueOfStones.net.packets.Packet03StartGame;
 import com.LeagueOfStones.net.packets.Packet06Attack;
+import com.LeagueOfStones.net.packets.Packet07PlayCard;
 import com.LeagueOfStones.net.packets.Packet10CardDied;
 import com.LeagueOfStones.net.packets.Packet11CardUpdate;
 import com.LeagueOfStones.net.packets.Packet12AreYouThere;
@@ -88,9 +89,21 @@ public class GameServer extends Thread{
 	        	packet = new Packet06Attack(data);
 	        	this.attack((Packet06Attack)packet, address, port);
 	        	break;
+	        case PLAYCARD://07
+	        	packet = new Packet07PlayCard(data);
+	        	playCard((Packet07PlayCard)packet, address, port);
 	        }
 	    }
-	    /**
+	    private void playCard(Packet07PlayCard packet, InetAddress address,int port) {
+	    	Packet playCardPacket = new Packet07PlayCard(packet.getData());
+	    	try {
+				sendDataToGamePlayers(playCardPacket.getData(), packet.getUsername());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		/**
 	     * Gets the cards on DB and calculates the health and messages the clients what happened with the cards.
 	     * Either they get card died packet, or update card packet
 	     * @param packet
