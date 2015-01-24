@@ -79,7 +79,7 @@ public class GameForm extends JPanel {
 			"3*(165dlu), $lgap, 75dlu"));
 
 		//---- oponentField1 ----
-		oponentField1.setIcon(new ImageIcon(getClass().getResource("/com/LeagueOfStones/images/1.png")));
+		oponentField1.setIcon(null);
 		add(oponentField1, CC.xy(1, 1, CC.DEFAULT, CC.FILL));
 		add(oponentField2, CC.xy(2, 1, CC.DEFAULT, CC.FILL));
 		add(oponentField3, CC.xy(3, 1, CC.DEFAULT, CC.FILL));
