@@ -28,6 +28,7 @@ public class GameForm extends JPanel {
 		oponentField7 = new JButton();
 		oponentField8 = new JButton();
 		oponentField9 = new JButton();
+		label1 = new JLabel();
 		field1 = new JButton();
 		field2 = new JButton();
 		field3 = new JButton();
@@ -37,6 +38,7 @@ public class GameForm extends JPanel {
 		field7 = new JButton();
 		field8 = new JButton();
 		field9 = new JButton();
+		label2 = new JLabel();
 		hand1 = new JButton();
 		hand2 = new JButton();
 		hand3 = new JButton();
@@ -46,6 +48,8 @@ public class GameForm extends JPanel {
 		hand7 = new JButton();
 		hand8 = new JButton();
 		hand9 = new JButton();
+		label3 = new JLabel();
+		label4 = new JLabel();
 
 		//======== this ========
 
@@ -57,38 +61,54 @@ public class GameForm extends JPanel {
 				java.awt.Color.red), getBorder())); addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
 		setLayout(new FormLayout(
-			"9*(120dlu)",
+			"9*(120dlu), $lcgap, 60dlu",
 			"3*(165dlu), $lgap, 75dlu"));
 
 		//---- oponentField1 ----
 		oponentField1.setIcon(null);
-		add(oponentField1, CC.xy(1, 1));
-		add(oponentField2, CC.xy(2, 1));
-		add(oponentField3, CC.xy(3, 1));
-		add(oponentField4, CC.xy(4, 1));
-		add(oponentField5, CC.xy(5, 1));
-		add(oponentField6, CC.xy(6, 1));
-		add(oponentField7, CC.xy(7, 1));
-		add(oponentField8, CC.xy(8, 1));
-		add(oponentField9, CC.xy(9, 1));
-		add(field1, CC.xy(1, 2));
-		add(field2, CC.xy(2, 2));
-		add(field3, CC.xy(3, 2));
-		add(field4, CC.xy(4, 2));
-		add(field5, CC.xy(5, 2));
-		add(field6, CC.xy(6, 2));
-		add(field7, CC.xy(7, 2));
-		add(field8, CC.xy(8, 2));
-		add(field9, CC.xy(9, 2));
-		add(hand1, CC.xy(1, 3));
-		add(hand2, CC.xy(2, 3));
-		add(hand3, CC.xy(3, 3));
-		add(hand4, CC.xy(4, 3));
-		add(hand5, CC.xy(5, 3));
-		add(hand6, CC.xy(6, 3));
-		add(hand7, CC.xy(7, 3));
-		add(hand8, CC.xy(8, 3));
-		add(hand9, CC.xy(9, 3));
+		add(oponentField1, CC.xy(1, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField2, CC.xy(2, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField3, CC.xy(3, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField4, CC.xy(4, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField5, CC.xy(5, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField6, CC.xy(6, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField7, CC.xy(7, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField8, CC.xy(8, 1, CC.DEFAULT, CC.FILL));
+		add(oponentField9, CC.xy(9, 1, CC.DEFAULT, CC.FILL));
+
+		//---- label1 ----
+		label1.setText("Oponent cards");
+		add(label1, CC.xy(11, 1, CC.CENTER, CC.DEFAULT));
+		add(field1, CC.xy(1, 2, CC.DEFAULT, CC.FILL));
+		add(field2, CC.xy(2, 2, CC.DEFAULT, CC.FILL));
+		add(field3, CC.xy(3, 2, CC.DEFAULT, CC.FILL));
+		add(field4, CC.xy(4, 2, CC.DEFAULT, CC.FILL));
+		add(field5, CC.xy(5, 2, CC.DEFAULT, CC.FILL));
+		add(field6, CC.xy(6, 2, CC.DEFAULT, CC.FILL));
+		add(field7, CC.xy(7, 2, CC.DEFAULT, CC.FILL));
+		add(field8, CC.xy(8, 2, CC.DEFAULT, CC.FILL));
+		add(field9, CC.xy(9, 2, CC.DEFAULT, CC.FILL));
+
+		//---- label2 ----
+		label2.setText("Your cards");
+		add(label2, CC.xy(11, 2, CC.CENTER, CC.DEFAULT));
+		add(hand1, CC.xy(1, 3, CC.DEFAULT, CC.FILL));
+		add(hand2, CC.xy(2, 3, CC.DEFAULT, CC.FILL));
+		add(hand3, CC.xy(3, 3, CC.DEFAULT, CC.FILL));
+		add(hand4, CC.xy(4, 3, CC.DEFAULT, CC.FILL));
+		add(hand5, CC.xy(5, 3, CC.DEFAULT, CC.FILL));
+		add(hand6, CC.xy(6, 3, CC.DEFAULT, CC.FILL));
+		add(hand7, CC.xy(7, 3, CC.DEFAULT, CC.FILL));
+		add(hand8, CC.xy(8, 3, CC.DEFAULT, CC.FILL));
+		add(hand9, CC.xy(9, 3, CC.DEFAULT, CC.FILL));
+
+		//---- label3 ----
+		label3.setText("Your hand");
+		add(label3, CC.xy(11, 3, CC.CENTER, CC.DEFAULT));
+
+		//---- label4 ----
+		label4.setText("Stats");
+		add(label4, CC.xy(11, 5, CC.CENTER, CC.DEFAULT));
 		// JFormDesigner - End of component initialization  //GEN-END:initComponents
 	}
 
@@ -103,6 +123,7 @@ public class GameForm extends JPanel {
 	private JButton oponentField7;
 	private JButton oponentField8;
 	private JButton oponentField9;
+	private JLabel label1;
 	private JButton field1;
 	private JButton field2;
 	private JButton field3;
@@ -112,6 +133,7 @@ public class GameForm extends JPanel {
 	private JButton field7;
 	private JButton field8;
 	private JButton field9;
+	private JLabel label2;
 	private JButton hand1;
 	private JButton hand2;
 	private JButton hand3;
@@ -121,5 +143,7 @@ public class GameForm extends JPanel {
 	private JButton hand7;
 	private JButton hand8;
 	private JButton hand9;
+	private JLabel label3;
+	private JLabel label4;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
 }
