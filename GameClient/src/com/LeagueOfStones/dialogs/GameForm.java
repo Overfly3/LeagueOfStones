@@ -4,16 +4,35 @@
 
 package com.LeagueOfStones.dialogs;
 
-import javax.swing.*;
-import com.jgoodies.forms.factories.*;
-import com.jgoodies.forms.layout.*;
+import java.awt.Image;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+import com.LeagueOfStones.entities.Card;
+import com.LeagueOfStones.managers.GameManager;
+import com.jgoodies.forms.factories.CC;
+import com.jgoodies.forms.layout.FormLayout;
 
 /**
  * @author Alexander Theijs
  */
 public class GameForm extends JPanel {
-	public GameForm() {
+	GameManager myGameManager;
+	ArrayList<JButton> myHandFields;
+	
+	public GameForm(GameManager manager, String nickNameUser, String nickNameOponent) {
+		myGameManager = manager;
 		initComponents();
+		addHandFieldsToHandButtonList();
 	}
 
 	private void initComponents() {
@@ -65,7 +84,7 @@ public class GameForm extends JPanel {
 			"3*(165dlu), $lgap, 75dlu"));
 
 		//---- oponentField1 ----
-		oponentField1.setIcon(null);
+		oponentField1.setIcon(new ImageIcon(getClass().getResource("/com/LeagueOfStones/images/1.png")));
 		add(oponentField1, CC.xy(1, 1, CC.DEFAULT, CC.FILL));
 		add(oponentField2, CC.xy(2, 1, CC.DEFAULT, CC.FILL));
 		add(oponentField3, CC.xy(3, 1, CC.DEFAULT, CC.FILL));
@@ -146,4 +165,26 @@ public class GameForm extends JPanel {
 	private JLabel label3;
 	private JLabel label4;
 	// JFormDesigner - End of variables declaration  //GEN-END:variables
+	
+	public void PutDrawnCardsIntoHand(){
+		clearHand();
+		for(int i = 0; i < myGameManager.myHand.size(); i++)
+		{
+			Card handCard = myGameManager.myHand.get(i);
+			String iconUrl = myGameManager.GenerateIconUrl(handCard.Id);
+			myHandFields.get(i).setIcon(new ImageIcon(getClass().getResource(iconUrl)));
+		}
+	}
+
+	private void addHandFieldsToHandButtonList() {
+		myHandFields = new ArrayList<JButton>();
+		myHandFields.addAll(Arrays.asList(new JButton[]{hand1, hand2, hand3, hand4, hand5, hand6, hand7, hand8, hand9}));
+	}
+
+	private void clearHand() {
+		for(JButton handCard : myHandFields)
+		{
+			handCard.setIcon(null);
+		}
+	}
 }

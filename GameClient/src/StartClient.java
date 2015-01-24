@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import com.LeagueOfStones.dialogs.GameForm;
 import com.LeagueOfStones.dialogs.MainFrame;
 import com.LeagueOfStones.managers.GameManager;
 import com.LeagueOfStones.net.GameClient;
@@ -19,6 +20,7 @@ public class StartClient{
 	}
 
 	private static void setUi() {
+		new GameManager().StartGame("", "");
 		//Create the frame.
 		final JFrame loginFrame = new JFrame("League Of Stones");
 		

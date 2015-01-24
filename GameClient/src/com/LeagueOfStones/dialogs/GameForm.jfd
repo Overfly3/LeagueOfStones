@@ -10,7 +10,7 @@ new FormModel {
 			name: "this"
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "oponentField1"
-				"icon": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/com/LeagueOfStones/images/1.png" )
 			}, new FormLayoutConstraints( class com.jgoodies.forms.layout.CellConstraints ) {
 				"vAlign": sfield com.jgoodies.forms.layout.CellConstraints FILL
 			} )
