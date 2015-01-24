@@ -7,7 +7,7 @@ import com.LeagueOfStones.net.packets.Packet12AreYouThere;
 public class Game {
 	public Player player1;
 	public Player player2;	
-	public String playerString;
+	private String playerString;
 	public boolean running = false;
 	private GameServer server;
 	
@@ -24,7 +24,11 @@ public class Game {
 		running = false;
 	}
 	
-	public boolean isPlayerConnected(String username) throws Exception{
+	public boolean isPlayerInThisGame(String name){
+		return (playerString.contains(name.trim())) ? true : false;
+	}
+	
+	public boolean isPlayerThere(String username) throws Exception{
 		boolean playerIsConnected = false;
 		Packet packet = new Packet12AreYouThere(username);
 		if(playerString.split(";")[0].equals(username.trim())){
@@ -50,14 +54,4 @@ public class Game {
 		}
 		return running;		
 	}	
-	
-	public boolean isPlayerInThisGame(String username){
-		if(playerString.split(";")[0] == username.trim()){
-			return true;
-		}else if(playerString.split(";")[1] == username.trim())
-		{
-			return true;
-		}
-		return false;
-	}
 }

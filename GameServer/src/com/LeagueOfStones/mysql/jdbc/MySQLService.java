@@ -1,6 +1,7 @@
 package com.LeagueOfStones.mysql.jdbc;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,6 +12,7 @@ import javax.sql.DataSource;
 
 import com.LeagueOfStones.entities.Card;
 import com.LeagueOfStones.mysql.datasource.DataSourceFactory;
+import com.LeagueOfStones.properties.Properties;
 
 
 public class MySQLService {
@@ -19,7 +21,6 @@ public class MySQLService {
 	private ResultSet rs = null;
 	private DataSource ds = null;
 	private List<Card> cards = new ArrayList<Card>();
-	private Card card;
 	
 	public MySQLService(){
 		this.ds = DataSourceFactory.getMySQLDataSource();		
@@ -49,51 +50,19 @@ public class MySQLService {
 		return cards;
 	}
 	
-	public Card queryCard(String stmt){
-		this.prepare();
-		try {
-			this.rs = this.stmt.executeQuery(stmt);
-			card = extractCard(rs);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally{
-			try{
-				if(this.rs != null){this.rs.close();}
-				if(this.stmt != null){this.stmt.close();}
-				if(this.connection != null){this.connection.close();}
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		}
-		return card;
-	}
-	
-	private Card extractCard(ResultSet rs) {
-		try {
-			while(rs.next()){
-				card = new Card(
-					rs.getInt("ID"),
-					rs.getInt("attack"),
-					rs.getInt("health"),
-					rs.getInt("mana")
-					);			
-				}
-			return card;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
 	private List<Card> extractCards(ResultSet rs) {
 		try {
 			while(rs.next()){
 				Card card =  new Card(
-							rs.getInt("id"),
-							rs.getInt("attack"),
-							rs.getInt("health"),
-							rs.getInt("mana")						
-						);
+								rs.getInt("id"), 
+								rs.getString("name"), 
+								rs.getString("description"), 
+								rs.getInt("ad"), 
+								rs.getInt("hp"), 
+								rs.getInt("cost"), 
+								rs.getInt("race_id"), 
+								rs.getInt("type_id")
+								);
 				cards.add(card);
 			}
 			return cards;
