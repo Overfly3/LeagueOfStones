@@ -15,9 +15,7 @@ import com.LeagueOfStones.net.packets.Packet00Login;
 
 public class StartClient{
 	public static void main(String[] args){
-		//setUi();
-		GameManager manager = new GameManager();
-		manager.getDeck();
+		setUi();
 	}
 
 	private static void setUi() {

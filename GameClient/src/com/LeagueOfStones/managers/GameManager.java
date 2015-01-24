@@ -28,7 +28,7 @@ public class GameManager {
 		getDeck();
 	}
 
-	public void getDeck() {
+	private void getDeck() {
 		myDeck = new ArrayList<Card>();
 		File fXmlFile = new File("src\\com\\LeagueOfStones\\decks\\cards.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
