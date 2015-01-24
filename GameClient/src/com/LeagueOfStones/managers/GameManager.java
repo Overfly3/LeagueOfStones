@@ -20,8 +20,6 @@ public class GameManager {
 	List<Card> myDeck;
 	public void StartGame(String nickNameOponent, String nickNameUser) {
 		preparateGame();
-		//open gameDialog
-		
 	}
 
 	private void preparateGame() {
