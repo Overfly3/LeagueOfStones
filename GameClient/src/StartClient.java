@@ -20,7 +20,6 @@ public class StartClient{
 	}
 
 	private static void setUi() {
-		new GameManager().StartGame("", "");
 		//Create the frame.
 		final JFrame loginFrame = new JFrame("League Of Stones");
 		
