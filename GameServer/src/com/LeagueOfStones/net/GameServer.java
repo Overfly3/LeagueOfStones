@@ -8,8 +8,10 @@ import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.LeagueOfStones.entities.Card;
 import com.LeagueOfStones.entities.Game;
 import com.LeagueOfStones.entities.Player;
+import com.LeagueOfStones.mysql.jdbc.MySQLService;
 import com.LeagueOfStones.net.packets.Packet;
 import com.LeagueOfStones.net.packets.Packet.PacketTypes;
 import com.LeagueOfStones.net.packets.Packet00Login;
@@ -17,6 +19,8 @@ import com.LeagueOfStones.net.packets.Packet01Disconnect;
 import com.LeagueOfStones.net.packets.Packet02Enqueue;
 import com.LeagueOfStones.net.packets.Packet03StartGame;
 import com.LeagueOfStones.net.packets.Packet06Attack;
+import com.LeagueOfStones.net.packets.Packet10CardDied;
+import com.LeagueOfStones.net.packets.Packet11CardUpdate;
 import com.LeagueOfStones.net.packets.Packet12AreYouThere;
 import com.LeagueOfStones.properties.Properties;
 
@@ -25,6 +29,7 @@ public class GameServer extends Thread{
 	private List<Player> connectedPlayers = new ArrayList<Player>();
 	private List<Game> games = new ArrayList<Game>();
 	private List<Player> queue = new ArrayList<Player>();
+	private MySQLService mysql = new MySQLService();
 	
 	 public GameServer() {
 	        try {
@@ -82,12 +87,53 @@ public class GameServer extends Thread{
 	        case ATTACK: //06
 	        	packet = new Packet06Attack(data);
 	        	this.attack((Packet06Attack)packet, address, port);
+	        	break;
 	        }
 	    }
-
-	    private void attack(Packet06Attack packet, InetAddress address, int port) {
-			//TODO calculate the damage/health and update the clients		
+	    /**
+	     * Gets the cards on DB and calculates the health and messages the clients what happened with the cards.
+	     * Either they get card died packet, or update card packet
+	     * @param packet
+	     * @param address
+	     * @param port
+	     */
+	    public void attack(Packet06Attack packet, InetAddress address, int port) {
+	    	Card myCard = mysql.queryCard("select * from cards where id = "+ packet.getMyCardId());
+	    	Card enemyCard = mysql.queryCard("select * from cards where id = "+ packet.getEnemyCardId());
 	    	
+	    	myCard.damageCard(enemyCard.AttackDamage);
+	    	enemyCard.damageCard(myCard.AttackDamage);
+	    	
+	    	if(myCard.isDead){
+	    		Packet myCardDied = new Packet10CardDied(myCard.Id);
+	    		try {
+					sendDataToGamePlayers(myCardDied.getData(),packet.getMyName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	    	}else{
+	    		Packet updateMyCard = new Packet11CardUpdate(myCard.Id, myCard.Health);
+	    		try {
+					sendDataToGamePlayers(updateMyCard.getData(), packet.getMyName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	    	}
+	    	if(enemyCard.isDead){
+	    		Packet enemyCardDied = new Packet10CardDied(enemyCard.Id);
+	    		try {
+					sendDataToGamePlayers(enemyCardDied.getData(), packet.getMyName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	    	}else{
+	    		Packet updateEnemyCard = new Packet11CardUpdate(enemyCard.Id, enemyCard.Health);
+	    		try {
+					sendDataToGamePlayers(updateEnemyCard.getData(), packet.getMyName());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+	    	}
 		}
 	    
 	    //this method is needed to pair two people which are in queue for a game
@@ -100,7 +146,6 @@ public class GameServer extends Thread{
 					games.add(new Game(player1, player2, this));
 					//we add the two players to the games list
 					
-					//TODO start game
 					Packet packet = new Packet03StartGame(player1,player2);	
 					
 					//here we need to send to each client that a game has been started
@@ -242,8 +287,20 @@ public class GameServer extends Thread{
 	        }
 	    }
 	    
-	    public void sendDataToGamePlayers(byte[] data){
-	    	
+	    //searches the player string in the game class and sends data if found
+	    public void sendDataToGamePlayers(byte[] data, String player1) throws Exception{
+	    	boolean dataSent = false;
+	    	for (Game game : games) {	    		
+	    		if(game.isPlayerInThisGame(player1)){
+	    			sendData(data, game.player1.ipAddress, game.player1.port);
+	    			sendData(data, game.player2.ipAddress, game.player2.port);
+	    			dataSent = true;
+	    			break;
+	    		}
+			}
+	    	if(!dataSent){
+	    		throw new Exception("No user found in game with name "+player1);
+	    	}
 	    }
 	    
 	    public int countConnectedPlayers(){
