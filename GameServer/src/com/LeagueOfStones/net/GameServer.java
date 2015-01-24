@@ -28,12 +28,17 @@ public class GameServer extends Thread{
 	
 	 public GameServer() {
 	        try {
+	        	//we instantiate the server datagramsocket listening on set port in the properties
+	        	
 	            this.socket = new DatagramSocket(Properties.port);
 	        } catch (SocketException e) {
 	            e.printStackTrace();
 	        }
 	    }
-
+	 	
+	 //since this class is a thread we need to implement this method
+	 //we can run any methods at the same time
+	 //the run method is the 1st method being called (main)
 	    public void run() {
 	        while (true) {
 	            byte[] data = new byte[Properties.packetDataSize];
@@ -43,19 +48,20 @@ public class GameServer extends Thread{
 	            } catch (IOException e) {
 	                e.printStackTrace();
 	            }
+	            //if we get a packet we need to process it to determine what's happening next
 	            this.parsePacket(packet.getData(), packet.getAddress(), packet.getPort());
 	        }
 	    }
 	    
 	    private void parsePacket(byte[] data, InetAddress address, int port) {
 	        String message = new String(data).trim();
-	        PacketTypes type = Packet.lookupPacket(message.substring(0, 2));
-	        Packet packet = null;
+	        PacketTypes type = Packet.lookupPacket(message.substring(0, 2)); //the first two numbers of each packet indicates the type of the packet
+	        Packet packet = null; // for each packetId there is a corresponding enum 
 	        switch (type) {
 	        default:
-	        case INVALID:
+	        case INVALID: //-1
 	            break;
-	        case LOGIN:
+	        case LOGIN: //00
 	            packet = new Packet00Login(data);
 	            System.out.println("[" + address.getHostAddress() + ":" + port + "] "
 	                    + ((Packet00Login) packet).getUsername() + " has connected...");
@@ -63,17 +69,17 @@ public class GameServer extends Thread{
 	            Player player = new Player(address, port,((Packet00Login) packet).getUsername());
 	            this.addConnection(player, (Packet00Login) packet);
 	            break;
-	        case DISCONNECT:
+	        case DISCONNECT: //01
 	            packet = new Packet01Disconnect(data);
 	            System.out.println("[" + address.getHostAddress() + ":" + port + "] "
 	                    + ((Packet01Disconnect) packet).getUsername() + " has left...");
 	            this.removeConnection((Packet01Disconnect) packet);
 	            break;
-	        case ENQUEUE:
+	        case ENQUEUE: //03
 	        	packet = new Packet02Enqueue(data);
 	        	this.addQueue((Packet02Enqueue)packet, address, port);
 	        	break;
-	        case ATTACK:
+	        case ATTACK: //06
 	        	packet = new Packet06Attack(data);
 	        	this.attack((Packet06Attack)packet, address, port);
 	        }
@@ -83,7 +89,8 @@ public class GameServer extends Thread{
 			//TODO calculate the damage/health and update the clients		
 	    	
 		}
-
+	    
+	    //this method is needed to pair two people which are in queue for a game
 		public void checkQueue(){
 			while(true){
 				if(queue.size() >= 2){
@@ -91,21 +98,25 @@ public class GameServer extends Thread{
 					Player player2 = queue.get(1);
 					
 					games.add(new Game(player1, player2, this));
+					//we add the two players to the games list
 					
 					//TODO start game
 					Packet packet = new Packet03StartGame(player1,player2);	
 					
+					//here we need to send to each client that a game has been started
 					sendData(packet.getData(), player1.ipAddress, player1.port);
 					sendData(packet.getData(), player2.ipAddress, player2.port);
 					
+					//important to remove the players from the queue when they are added to the list
+					//carefull in removing the player. the index has to be removed from top to bottom!
 					this.queue.remove(1); System.out.println(player2.getUsername()+" removed from queue");
 					this.queue.remove(0); System.out.println(player1.getUsername()+" removed from queue");
 					
 					System.out.println(player1.getUsername()+" is playing against "+ player2.getUsername());
-					
 				}
 				
 				try {
+					//5 seconds of sleep time for the while loop
 					Thread.sleep(5000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -113,6 +124,7 @@ public class GameServer extends Thread{
 			}
 		}
 
+		//add the players to the queue list only if they are also in the connected player list
 		private void addQueue(Packet02Enqueue packet, InetAddress address, int port) {
 			boolean addedQueue = false;
 	    	for (Player p : this.connectedPlayers) {
@@ -126,11 +138,15 @@ public class GameServer extends Thread{
 			}
 	    	
 	    	if(!addedQueue){
+	    		//send invalid packet if they are not found in the list
 	    		packet = new Packet02Enqueue(-1);
 				sendData(packet.getData(),address, port);
 	    	}
 		}
-
+		
+		//check if the client connecting is not in the list
+		//if he is, we need to check the port and ip
+		//else add the client to teh list
 		public void addConnection(Player player, Packet00Login packet) {
 	        boolean alreadyConnected = false;
 	        for (Player p : this.connectedPlayers) {
@@ -156,12 +172,13 @@ public class GameServer extends Thread{
 	            System.out.println("[SERVER]Added " +player.getUsername() +" to the connected players list.");
 	        }
 	    }
-
+		
 	    public void removeConnection(Packet01Disconnect packet) {
 	        this.connectedPlayers.remove(getPlayerIndex(packet.getUsername()));
 	        packet.writeData(this);
 	    }
-
+	    
+	    //return the player object by username
 	    public Player getPlayer(String username) {
 	        for (Player player : this.connectedPlayers) {
 	            if (player.getUsername().equals(username)) {
@@ -171,6 +188,7 @@ public class GameServer extends Thread{
 	        return null;
 	    }
 
+	    //return the player index of the list by username
 	    public int getPlayerIndex(String username) {
 	        int index = 0;
 	        for (Player player : this.connectedPlayers) {
@@ -192,6 +210,7 @@ public class GameServer extends Thread{
             }
 
 	    }
+	    
 	    
 	    public boolean checkConnection(byte[] data, InetAddress ipAddress, int port){
 	    	DatagramPacket packet = new DatagramPacket(data, data.length, ipAddress, port);
