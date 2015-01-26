@@ -27,7 +27,7 @@ public class Packet02Enqueue extends Packet{
 
 	@Override
 	public byte[] getData() {
-		return (super.packetId+username).getBytes();
+		return ("02"+username).getBytes();
 	}
 
 	public String getUsername() {

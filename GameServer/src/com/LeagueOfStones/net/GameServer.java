@@ -82,7 +82,7 @@ public class GameServer extends Thread{
 	                    + ((Packet01Disconnect) packet).getUsername() + " has left...");
 	            this.removeConnection((Packet01Disconnect) packet);
 	            break;
-	        case ENQUEUE: //03
+	        case ENQUEUE: 
 	        	packet = new Packet02Enqueue(data);
 	        	this.addQueue((Packet02Enqueue)packet, address, port);
 	        	break;
