@@ -9,8 +9,8 @@ public class Packet04GameWon extends Packet{
 	}
 
 	@Override
-	public void writeData(GameClient client) {
-		client.sendData(getData());
+	public void writeData(GameClient server) {
+		
 	}
 
 	@Override

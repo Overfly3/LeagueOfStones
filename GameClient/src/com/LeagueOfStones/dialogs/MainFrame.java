@@ -66,7 +66,7 @@ public class MainFrame extends JFrame{
 		
 		//Create components and put them in the frame.
 		//...create emptyLabel...
-		getContentPane().add(uiButtonForSearchGame, BorderLayout.PAGE_END);
+		getContentPane().add(uiButtonForSearchGame, BorderLayout.PAGE_START);
 		
 		//Add action listener to button
 		uiButtonForSearchGame.addActionListener(new ActionListener() {

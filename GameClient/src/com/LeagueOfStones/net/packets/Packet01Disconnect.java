@@ -24,16 +24,14 @@ public class Packet01Disconnect extends Packet{
         return username;
     }
 
-	@Override
+	/*@Override
 	public void writeData(GameClient client) {
 		client.sendData(getData());
 		
-	}
+	}*/
 
-    /*
 	@Override
-	public void writeData(GameServer server) {
-		server.sendDataToAllClients(getData());
+	public void writeData(GameClient server) {
+		
 	}
-	*/
 }

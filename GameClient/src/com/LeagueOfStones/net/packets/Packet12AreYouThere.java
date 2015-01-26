@@ -2,6 +2,7 @@ package com.LeagueOfStones.net.packets;
 
 import com.LeagueOfStones.net.GameClient;
 
+
 public class Packet12AreYouThere extends Packet{
 
 	private String username;

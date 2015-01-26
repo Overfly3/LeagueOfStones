@@ -2,18 +2,19 @@ package com.LeagueOfStones.net.packets;
 
 import com.LeagueOfStones.net.GameClient;
 
-
 public class Packet06Attack extends Packet{
 
 	private int myCardId;
 	private int enemyCardId;
-	
+	private String myName;
 	public Packet06Attack(byte[] data) {
 		super(06);
 		try
 		{
 			this.myCardId = Integer.parseInt(readData(data).split(";")[0]);
 			this.enemyCardId = Integer.parseInt(readData(data).split(";")[1]);
+			this.myName = readData(data).split(";")[2];
+			
 		}catch(NumberFormatException e){
 			e.printStackTrace();
 			myCardId = 0;
@@ -39,6 +40,18 @@ public class Packet06Attack extends Packet{
 	@Override
 	public byte[] getData() {
 		return ("06"+myCardId+";"+enemyCardId).getBytes();
+	}
+	
+	public int getMyCardId(){
+		return myCardId;
+	}
+	
+	public int getEnemyCardId(){
+		return enemyCardId;
+	}
+	
+	public String getMyName(){
+		return myName;
 	}
 
 }

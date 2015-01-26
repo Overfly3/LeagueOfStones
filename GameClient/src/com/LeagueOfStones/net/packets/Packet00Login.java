@@ -18,15 +18,13 @@ public class Packet00Login extends Packet{
         this.username = username;
     }
 
-   /*
-    @Override
-    public void writeData(GameServer server) {
-        server.sendDataToAllClients(getData());
-    }*/
-    
-    @Override
+   /* @Override
     public void writeData(GameClient client) {
         client.sendData(getData());
+    }
+*/
+    @Override
+    public void writeData(GameClient server) {
     }
 
     @Override
