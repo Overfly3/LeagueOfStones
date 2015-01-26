@@ -12,6 +12,7 @@ import com.LeagueOfStones.net.packets.Packet;
 import com.LeagueOfStones.net.packets.Packet.PacketTypes;
 import com.LeagueOfStones.net.packets.Packet00Login;
 import com.LeagueOfStones.net.packets.Packet01Disconnect;
+import com.LeagueOfStones.net.packets.Packet03StartGame;
 import com.LeagueOfStones.properties.Properties;
 
 
@@ -69,7 +70,8 @@ public class GameClient extends Thread{
         case ENQUEUE:
         	break;
         case STARTGAME:
-        	handleStartGame(packet);
+        	packet = new Packet03StartGame(data);
+        	handleStartGame((Packet03StartGame)packet, address, port);
         	break;
         case GAMEWON:
         	break;
@@ -78,7 +80,7 @@ public class GameClient extends Thread{
         }
     }
 
-	private void handleStartGame(Packet packet) {
+	private void handleStartGame(Packet03StartGame packet, InetAddress address, int port) {
 		GameManager gameManager = new GameManager();
 		String nickNames[] = packet.readData(packet.getData()).split(";");
 		gameManager.StartGame(nickNames[1], nickNames[0]);
