@@ -46,7 +46,6 @@ public class GameServer extends Thread{
 	 //we can run any methods at the same time
 	 //the run method is the 1st method being called (main)
 	    public void run() {
-	    	System.out.println("Server is running...");
 	        while (true) {
 	            byte[] data = new byte[Properties.packetDataSize];
 	            DatagramPacket packet = new DatagramPacket(data, data.length);
@@ -160,7 +159,7 @@ public class GameServer extends Thread{
 					games.add(new Game(player1, player2, this));
 					//we add the two players to the games list
 					
-					Packet packet = new Packet03StartGame(player1.getUsername(),player2.getUsername());	
+					Packet packet = new Packet03StartGame(player1,player2);	
 					
 					//here we need to send to each client that a game has been started
 					sendData(packet.getData(), player1.ipAddress, player1.port);

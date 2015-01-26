@@ -6,17 +6,16 @@ public class Packet05GameLost extends Packet{
 
 	public Packet05GameLost(int packetId) {
 		super(05);
-		
 	}
 
 	@Override
-	public void writeData(GameClient server) {
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 		
 	}
 
 	@Override
 	public byte[] getData() {
-		
 		return "05".getBytes();
 	}
 

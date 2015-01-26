@@ -4,8 +4,7 @@ import com.LeagueOfStones.net.GameClient;
 
 public class Packet02Enqueue extends Packet{
 
-	private String username;
-	
+	String username;
 	public Packet02Enqueue(byte[] data) {
 		super(02);
 		this.username = readData(data).split(";")[0];
@@ -15,22 +14,15 @@ public class Packet02Enqueue extends Packet{
 		super(02);
 		this.username = username;
 	}
-	
-	public Packet02Enqueue(int id){
-		super(id);
-	}
 
 	@Override
-	public void writeData(GameClient server) {
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 	}
 
 	@Override
 	public byte[] getData() {
-		return (super.packetId+username).getBytes();
-	}
-
-	public String getUsername() {
-		return username;
+		return ("02"+username).getBytes();
 	}
 
 }

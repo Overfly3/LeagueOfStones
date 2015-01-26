@@ -8,7 +8,8 @@ public class StartServer{
 		
 		//services running on the server
 		server.start();
-		server.checkQueue();
+		server.attack(null, null, 0);
+		//server.checkQueue();
 		
 //		MySQLService mysql= new MySQLService();
 //		List<Card> cards = new ArrayList<Card>();
