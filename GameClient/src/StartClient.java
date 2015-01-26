@@ -7,9 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import com.LeagueOfStones.dialogs.GameForm;
 import com.LeagueOfStones.dialogs.MainFrame;
-import com.LeagueOfStones.managers.GameManager;
 import com.LeagueOfStones.net.GameClient;
 import com.LeagueOfStones.net.packets.Packet00Login;
 
@@ -50,7 +48,7 @@ public class StartClient{
 	}
 
 	private static void login(String nickName, JFrame loginFrame) {
-		GameClient client = new GameClient("localhost");
+		GameClient client = new GameClient("10.71.56.36");
 		client.start();
 
 		Packet00Login loginPacket = new Packet00Login(nickName);
