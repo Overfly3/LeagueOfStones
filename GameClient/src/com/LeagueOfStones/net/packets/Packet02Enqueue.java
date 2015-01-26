@@ -21,7 +21,8 @@ public class Packet02Enqueue extends Packet{
 	}
 
 	@Override
-	public void writeData(GameClient server) {
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 	}
 
 	@Override

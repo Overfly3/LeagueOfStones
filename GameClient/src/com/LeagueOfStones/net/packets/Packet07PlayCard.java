@@ -22,9 +22,8 @@ public class Packet07PlayCard extends Packet{
 	}
 	
 	@Override
-	public void writeData(GameClient server) {
-		// TODO Auto-generated method stub
-		
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 	}
 
 	@Override

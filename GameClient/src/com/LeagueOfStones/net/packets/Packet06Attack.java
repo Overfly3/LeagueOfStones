@@ -33,8 +33,8 @@ public class Packet06Attack extends Packet{
 	}
 
 	@Override
-	public void writeData(GameClient server) {
-		
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 	}
 
 	@Override

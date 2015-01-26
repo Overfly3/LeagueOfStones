@@ -23,9 +23,8 @@ public class Packet11CardUpdate extends Packet{
 	}
 
 	@Override
-	public void writeData(GameClient server) {
-		// TODO Auto-generated method stub
-		
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 	}
 
 	@Override

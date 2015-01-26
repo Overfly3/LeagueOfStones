@@ -30,8 +30,8 @@ public class Packet01Disconnect extends Packet{
 		
 	}*/
 
-	@Override
-	public void writeData(GameClient server) {
-		
+    @Override
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 	}
 }

@@ -23,7 +23,8 @@ public class Packet12AreYouThere extends Packet{
 	}
 	
 	@Override
-	public void writeData(GameClient server) {
+	public void writeData(GameClient client) {
+		client.sendData(getData());
 	}
 	
 	@Override
